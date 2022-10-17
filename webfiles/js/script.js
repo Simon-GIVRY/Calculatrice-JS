@@ -10,26 +10,84 @@ let signs = ["+","-","*","/"]
 // Number inputs 
 let numbers = document.querySelectorAll('.buttonRow .number')
 
+//keyboard inputs
+document.addEventListener("keydown", e=> {
+
+    if (e.code.split("Numpad") && /Numpad\d/gm.test(e.code)){
+        console.log('afa');
+        numberInput(e.key)
+    }
+    
+    if (e.code.split("Numpad")[1] === "Enter") {
+        equalAction()
+    }
+
+    if (e.code.split("Numpad")[1] === "Add") {
+        addAction()
+    }
+
+    if (e.code.split("Numpad")[1] === "Subtract") {
+        substractAction()
+    }
+
+    if (e.code.split("Numpad")[1] === "Multiply") {
+        multiplyAction()
+    }
+
+    if (e.code.split("Numpad")[1] === "Divide") {
+        divideAction()
+    }
+
+    if (e.key === "Delete" || e.key === "Backspace") {
+        correctAction()
+    }
+})
+
+//direct inputs
 for (const number of numbers) {
     number.addEventListener("click", () => {
-        if (reset === true) {
-            reset = false
-            result = ""
-
-        }
-        
-        tempNumber += number.innerText
-        result += number.innerText
-        showResult.innerText = tempNumber
-
+        console.log(number.innerText);
+        numberInput(number.innerText)
     })
 }
 
-// formulas
-// plus
 let plus = document.querySelector(".signs #plus")
-
 plus.addEventListener("click", ()=>{
+    addAction()
+})
+
+let minus = document.querySelector(".signs #minus")
+minus.addEventListener("click", ()=>{
+    substractAction()
+})
+
+let multiply = document.querySelector(".signs #multiply")
+multiply.addEventListener("click", ()=>{
+    multiplyAction()
+})
+
+let divide = document.querySelector(".signs #divide")
+divide.addEventListener("click", ()=>{
+    divideAction()
+})
+
+let equal = document.querySelector(".buttonRow .equal")
+equal.addEventListener("click", ()=>{
+    equalAction()
+})
+
+function numberInput(input) {
+    if (reset === true) {
+            reset = false
+            result = ""
+        }
+        
+        tempNumber += input
+        result += input
+        showResult.innerText = tempNumber
+}
+
+function addAction() {
     if (result != "" && !signs.includes(result.slice(-1)) ) {
         if (reset === true) {
             reset = false
@@ -39,17 +97,11 @@ plus.addEventListener("click", ()=>{
         showResult.innerText = eval(result)
         
         result += '+';
-           
-        console.log(eval(showResult.innerText));
-        console.log(result);
-        
     }
-})
 
-// minus 
-let minus = document.querySelector(".signs #minus")
+}
 
-minus.addEventListener("click", ()=>{
+function substractAction() {
     if (result != ""  && !signs.includes(result.slice(-1))) {
         if (reset === true) {
             reset = false
@@ -59,16 +111,10 @@ minus.addEventListener("click", ()=>{
         showResult.innerText = eval(result)
 
         result += '-';
-        
-        console.log(eval(showResult.innerText));
-        console.log(result);
     }
-})
+}
 
-// multiply 
-let multiply = document.querySelector(".signs #multiply")
-
-multiply.addEventListener("click", ()=>{
+function multiplyAction() {
     if (result != "" && !signs.includes(result.slice(-1))) {
         if (reset === true) {
             reset = false
@@ -78,16 +124,10 @@ multiply.addEventListener("click", ()=>{
         showResult.innerText = eval(result)
         
         result += '*';
-    
-        console.log(eval(showResult.innerText));
-        console.log(result);
     }
-})
+}
 
-// divide
-let divide = document.querySelector(".signs #divide")
-
-divide.addEventListener("click", ()=>{
+function divideAction() {
     if (result != "" && !signs.includes(result.slice(-1))) {
         if (reset === true) {
             reset = false
@@ -97,31 +137,23 @@ divide.addEventListener("click", ()=>{
         showResult.innerText = eval(result)
 
         result += '/';
-    
-        console.log(eval(showResult.innerText));
-        console.log(result);
     }
-})
+}
 
-// equal
-let equal = document.querySelector(".buttonRow .equal")
-
-equal.addEventListener("click", ()=>{
-    showResult.innerText = eval(result) ;
+function equalAction() {
+    
+    showResult.innerText = eval(result?result:"0") ;
     tempNumber =""
     reset = true
+}
+
+let correct = document.querySelector(".signs #correct")
+correct.addEventListener("click", () => {
+    correctAction()
 })
 
-
-// correct 
-let correct = document.querySelector(".signs #correct")
-
-correct.addEventListener("click", () => {
-
+function correctAction() {
     tempNumber=""
     showResult.innerText = "0" ;
     result = ""
-
-
-    console.log(result);
-})
+}
