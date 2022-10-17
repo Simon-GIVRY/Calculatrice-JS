@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.container {
+    background-color: black;
+    border-radius: 5px;
+    border: #6b6b6b 2px solid;
+    display: flex;
+}
+
+div.interface{
+    display: flex;
+    flex-direction: column;
+    margin: auto 0.5rem;
+}
+
+div.interface div.result{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0rem 0 0.8rem;
+}
+
+div.container p {
+    color: white;
+    margin: 1.5rem 0 0.25rem;
+    padding: 0.5rem;
+
+}
+
+div.container a {
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; 
+    padding: 1rem 1.25rem;
+}
+
+div.signs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.signs a {
+    background-color: #3a3a3a;
+    margin: 0.25rem 0.5rem;
+}
+
+
+div.interface div.buttonRow .row{
+    margin: 2.5rem 0;
+}
+
+div.interface div.buttonRow a {
+    background-color: #242222;
+    margin: 0.3rem;
+}
+
+div.interface div.buttonRow .equal{
+    background-color: #ff5d5d;
+    padding: 1rem 3.15rem;
+}
+
+div.interface div.buttonRow .row1{
+    margin-top: 1.5rem;
+}
